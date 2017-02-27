@@ -47,6 +47,7 @@ app.get('/loadtest', function(req, res) {
     }
     console.log('Tests run successfully')
   })
+  res.header('Access-Control-Allow-Origin', '*')
   res.send("ok")
 });
 
