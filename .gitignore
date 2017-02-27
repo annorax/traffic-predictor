@@ -1,3 +1,4 @@
 node_modules/
-monitored-server/access.log
+monitored-server/logs/
 .idea/
+npm-debug.log

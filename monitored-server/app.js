@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var morgan = require('morgan');
+var responseTime = require('response-time');
+var mkdirp = require('mkdirp');
 var fs = require('fs');
 
 var index = require('./routes/index');
@@ -12,11 +13,18 @@ var users = require('./routes/users');
 
 var app = express();
 
-// create a write stream (in append mode)
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
+function randomInt (low, high) {
+    return Math.floor(Math.random() * (high - low) + low);
+}
 
 // setup the logger
-app.use(morgan(':date[iso] :response-time', {stream: accessLogStream}));
+app.use(responseTime(function (req, res, time) {
+  var logDirName = "logs";
+  mkdirp(logDirName);
+  var accessLogStream = fs.createWriteStream(
+      path.join(__dirname, logDirName, "/access." + new Date().getTime() + "." + randomInt(0, 1000000) + ".log"),
+      {flags: 'a'});
+}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
