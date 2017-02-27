@@ -1,4 +1,3 @@
 node_modules/
 monitored-server/access.log
-build/
 .idea/
