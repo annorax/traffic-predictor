@@ -24,6 +24,7 @@ app.use(responseTime(function (req, res, time) {
   var accessLogStream = fs.createWriteStream(
       path.join(__dirname, logDirName, "/access." + new Date().getTime() + "." + randomInt(0, 1000000) + ".log"),
       {flags: 'a'});
+  accessLogStream.write(time + "");
 }))
 
 // view engine setup
