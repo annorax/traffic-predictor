@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f355bef-93b7-4fa1-be6e-c8b637dfdd7b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/traffic-predictor.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/build.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/check-versions.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/dev-client.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/dev-server.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/utils.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/vue-loader.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/webpack.base.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/webpack.dev.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/webpack.prod.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controller-ui/build/webpack.test.conf.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,6 +74,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/monitored-server/app.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -630,7 +618,7 @@
       <option name="presentableId" value="Default" />
       <updated>1488187264145</updated>
       <workItem from="1488187267216" duration="4119000" />
-      <workItem from="1488191613142" duration="9000" />
+      <workItem from="1488191613142" duration="97000" />
     </task>
     <task id="LOCAL-00001" summary="Stub monitored server">
       <created>1488187489694</created>
@@ -674,11 +662,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488191503916</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Try again to remove the build folder">
+      <created>1488191660117</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1488191660117</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4128000" />
+    <option name="totallyTimeSpent" value="4216000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="709" extended-state="6" />
@@ -746,7 +741,8 @@
     <MESSAGE value="Log request timestamps, too" />
     <MESSAGE value="Stub out the control ui based on Vue.js" />
     <MESSAGE value="Untrack build dir" />
-    <option name="LAST_COMMIT_MESSAGE" value="Untrack build dir" />
+    <MESSAGE value="Try again to remove the build folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try again to remove the build folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
