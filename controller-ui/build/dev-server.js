@@ -10,6 +10,7 @@ var loadtest = require('loadtest');
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
+var loadtest = require('loadtest');
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
@@ -25,9 +26,28 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 
-app.get('/loadtest', function(req, res){
-  console.log('testing load');
-  res.send("ok");
+var runningLoadTest;
+
+function clamp(num, min, max) {
+  return Math.min(Math.max(num, min), max);
+};
+
+app.get('/loadtest', function(req, res) {
+  var options = {
+    url: 'http://localhost:3000',
+    maxRequests: 1000000,
+    concurrency: clamp(req.query.concurrency, 1, 1000)
+  }
+  if (runningLoadTest) {
+    runningLoadTest.stop()
+  }
+  runningLoadTest = loadtest.loadTest(options, function(error, result) {
+    if (error) {
+      return console.error('Got an error: %s', error)
+    }
+    console.log('Tests run successfully')
+  })
+  res.send("ok")
 });
 
 var compiler = webpack(webpackConfig)
