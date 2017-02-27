@@ -16,7 +16,7 @@ var app = express();
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
 
 // setup the logger
-app.use(morgan(':response-time', {stream: accessLogStream}));
+app.use(morgan(':date[iso] :response-time', {stream: accessLogStream}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
