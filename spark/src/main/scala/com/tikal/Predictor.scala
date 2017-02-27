@@ -18,7 +18,7 @@ object Predictor {
     Logger.getLogger("org").setLevel(Level.WARN)
 
     val sparkConf = new SparkConf().setAppName("traffic-predictor").setMaster("local[*]")
-    val ssc = new StreamingContext(sparkConf, Seconds(2))
+    val ssc = new StreamingContext(sparkConf, Seconds(5))
     val file = "file:///tmp/log"
     //val lines = ssc.fileStream[LongWritable, Text, TextInputFormat](file).window(Seconds(10), Seconds(2))
 
@@ -45,7 +45,7 @@ object Predictor {
     // Fit the mode
     val lrModel = lr.fit(output)
 
-    val lines = ssc.textFileStream(file).window(Seconds(10), Seconds(2))
+    val lines = ssc.textFileStream(file).window(Seconds(10), Seconds(5))
 
     lines.foreachRDD(rdd => {
       if (rdd != null && rdd.count() > 0) {
@@ -61,8 +61,6 @@ object Predictor {
         } else {
           write("0")
         }
-
-        println("-------------")
 
       }
     })
