@@ -6,6 +6,7 @@ if (!process.env.NODE_ENV) {
 }
 
 var opn = require('opn')
+var loadtest = require('loadtest');
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
@@ -23,10 +24,16 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+
+app.get('/loadtest', function(req, res){
+  console.log('testing load');
+  res.send("ok");
+});
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
-  publicPath: webpackConfig.output.publicPath,
+  publicPath: webpackConfig.output.pubicPath,
   quiet: true
 })
 
