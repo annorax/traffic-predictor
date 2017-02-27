@@ -2,3 +2,4 @@ node_modules/
 monitored-server/logs/
 .idea/
 npm-debug.log
+status
