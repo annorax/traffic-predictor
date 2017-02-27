@@ -1,53 +1,95 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <h1>Load test concurrency</h1>
+    <vue-slider ref="slider" v-model="value" :min="1" :max="1000" @callback="reconfigureLoadTester"/>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import vueSlider from 'vue-slider-component'
+
+  const debounce = function debounce (func, wait, immediate) {
+    var timeout, args, context, timestamp, result
+    if (wait == null) wait = 100
+
+    function later () {
+      var last = Date.now() - timestamp
+
+      if (last < wait && last >= 0) {
+        timeout = setTimeout(later, wait - last)
+      } else {
+        timeout = null
+        if (!immediate) {
+          result = func.apply(context, args)
+          context = args = null
+        }
+      }
+    }
+
+    var debounced = function () {
+      context = this
+      args = arguments
+      timestamp = Date.now()
+      var callNow = immediate && !timeout
+      if (!timeout) timeout = setTimeout(later, wait)
+      if (callNow) {
+        result = func.apply(context, args)
+        context = args = null
+      }
+
+      return result
+    }
+
+    debounced.clear = function () {
+      if (timeout) {
+        clearTimeout(timeout)
+        timeout = null
+      }
+    }
+
+    return debounced
+  }
+
+  export default {
+    name: 'hello',
+    components: {
+      vueSlider
+    },
+    data () {
+      return {
+        value: 1
+      }
+    },
+    methods: {
+      reconfigureLoadTester: function (value) {
+        console.log('am I sane?')
+        /* debounce(function () {
+          console.log('yes!')
+          // window.fetch('http://localhost:3000/loadtest?concurrency=' + value).resolve()
+        }, 100) */
+        debounce(console.log, 500)
+      }
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
 
-a {
-  color: #42b983;
-}
+  a {
+    color: #42b983;
+  }
 </style>
